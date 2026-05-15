@@ -56,7 +56,6 @@ yarn-error.log*
 serviceAccountKey.json
 
 # AI / FAISS
-*.index
 *.bin
 *.pkl
 *.faiss

@@ -63,7 +63,10 @@ class _RegisterState extends State<Register> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text("OK"),
+                    child: const Text(
+                      "OK",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 )
               ],
