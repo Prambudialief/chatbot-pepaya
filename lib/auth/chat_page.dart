@@ -33,7 +33,7 @@ class ChatMessage {
 class ChatService {
   // Ganti dengan IP lokal kamu saat development
   // Contoh: "http://192.168.1.5:3000"
-  static const String baseUrl = "http://10.0.2.2:3000"; // Android emulator
+  static const String baseUrl = "https://chatbot-pepaya-production.up.railway.app"; // Android emulator
 
   // Kirim pertanyaan ke backend RAG
   static Future<Map<String, dynamic>> tanya({
