@@ -20,7 +20,6 @@ import { Embeddings } from "@langchain/core/embeddings";
 import { pipeline } from "@xenova/transformers";
 import { initializeApp, cert } from "firebase-admin/app";
 import { getFirestore, Timestamp } from "firebase-admin/firestore";
-import { createRequire } from "module";
 
 dotenv.config();
 
@@ -36,10 +35,13 @@ if (!process.env.GROQ_API_KEY) {
 // ─────────────────────────────────────────────
 // FIREBASE ADMIN
 // ─────────────────────────────────────────────
-const require = createRequire(import.meta.url);
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = JSON.parse(
+  process.env.FIREBASE_SERVICE_ACCOUNT
+);
 
-initializeApp({ credential: cert(serviceAccount) });
+initializeApp({
+  credential: cert(serviceAccount),
+});
 const db = getFirestore();
 console.log("✅ Firestore terhubung!\n");
 
