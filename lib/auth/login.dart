@@ -95,6 +95,7 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> loginUser() async {
+    FocusScope.of(context).unfocus();
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
     if (email.isEmpty || password.isEmpty) {
