@@ -14,8 +14,11 @@ class _RegisterState extends State<Register> {
   final passwordController = TextEditingController();
 
   bool isLoading = false;
-  void showCustomDialog(String title, String message,
-      {bool isSuccess = false}) {
+  void showCustomDialog(
+    String title,
+    String message, {
+    bool isSuccess = false,
+  }) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -53,8 +56,14 @@ class _RegisterState extends State<Register> {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
+
                       if (isSuccess) {
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const Login(),
+                          ),
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -65,7 +74,9 @@ class _RegisterState extends State<Register> {
                     ),
                     child: const Text(
                       "OK",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 )
@@ -76,7 +87,7 @@ class _RegisterState extends State<Register> {
       },
     );
   }
-          
+
   @override
   void dispose() {
     emailController.dispose();
@@ -85,8 +96,7 @@ class _RegisterState extends State<Register> {
   }
 
   Future<void> registerUser() async {
-    if (emailController.text.isEmpty ||
-        passwordController.text.isEmpty) {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       showCustomDialog("Tolong", "Semua bagian diisi");
       return;
     }
@@ -105,14 +115,9 @@ class _RegisterState extends State<Register> {
       );
 
       showCustomDialog(
-        "Berhasil", 
+        "Berhasil",
         "Membuat Akun",
         isSuccess: true,
-      );
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const Login()),
       );
     } on FirebaseAuthException catch (e) {
       String message = "Terjadi kesalahan";
