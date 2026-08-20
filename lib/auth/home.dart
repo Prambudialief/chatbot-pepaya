@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project_masyrakat/auth/informasi.dart';
 import 'chat_page.dart';
 import 'login.dart';
 
@@ -74,6 +75,21 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
                 child: const Text("Mulai Chatbot"),
+              ),
+            ),
+            const SizedBox(height: 15),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Informasi(),
+                    ),
+                  );
+                },
+                child: const Text("Informasi Aplikasi"),
               ),
             ),
             const SizedBox(height: 15),
